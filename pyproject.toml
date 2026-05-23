@@ -1,0 +1,67 @@
+[project]
+name = "legal-contract-automation-suite"
+version = "1.0.0"
+description = "AI-powered Legal Contract Automation Suite for UAE law firms"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Legal Automation Team", email = "info@legalautomation.ae"},
+]
+keywords = ["legal", "contract", "automation", "AI", "UAE", "law"]
+
+dependencies = [
+    "streamlit>=1.28.0",
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0",
+    "google-generativeai>=0.7.0",
+    "openai>=1.6.0",
+    "anthropic>=0.25.0",
+    "chromadb>=0.4.22",
+    "sentence-transformers>=2.2.0",
+    "PyPDF2>=3.0.0",
+    "python-docx>=1.1.0",
+    "requests>=2.31.0",
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+monitoring = [
+    "prometheus-client>=0.19.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*", "async_test_*"]
+asyncio_mode = "auto"
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "evaluation: Evaluation tests",
+    "slow: Slow tests (deselect with '-m \"not slow\"' )",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"

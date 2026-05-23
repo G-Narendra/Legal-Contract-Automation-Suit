@@ -1,0 +1,28 @@
+# =============================================================================
+# User-facing prompt templates for Legal Contract Automation Suite
+# =============================================================================
+
+analysis_prompt: |
+  Please analyze this {language} {contract_type} contract and extract structured information including:
+  1. All parties involved
+  2. Subject matter and scope
+  3. Duration and termination conditions
+  4. Financial terms and payment obligations
+  5. Key clauses and obligations
+  6. Governing law and jurisdiction
+  7. Risk indicators
+
+drafting_prompt: |
+  Please draft a {language} {contract_type} contract with the following details:
+  {params}
+
+research_prompt: |
+  Research the following legal question in the context of UAE law:
+  Query: {query}
+  Please provide relevant laws, articles, and precedents with citations.
+
+risk_review_prompt: |
+  Review this {language} contract for legal risks and UAE compliance issues:
+  {contract_text}
+  
+  Flag any clauses that may violate UAE Federal Laws or regulations.

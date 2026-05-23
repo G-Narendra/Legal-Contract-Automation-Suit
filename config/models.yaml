@@ -1,0 +1,60 @@
+# =============================================================================
+# Model Configuration for Legal Contract Automation Suite
+# =============================================================================
+# Dynamic Provider Switching:
+# Change 'provider' below to switch between Google/OpenAI/Anthropic
+# =============================================================================
+
+llm:
+  primary:
+    provider: google          # Options: google, openai, anthropic, local
+    model: gemini-2.5-flash
+    temperature: 0.1
+    max_tokens: 4096
+    api_key_env: GEMINI_API_KEY
+
+  lite:
+    provider: google
+    model: gemini-2.5-flash-lite
+    temperature: 0.1
+    max_tokens: 2048
+    api_key_env: GEMINI_API_KEY
+
+  fallback:
+    provider: openai
+    model: gpt-4o-mini
+    temperature: 0.1
+    max_tokens: 2048
+    api_key_env: OPENAI_API_KEY
+
+embedding:
+  provider: google            # Options: google, openai, local
+  model: models/gemini-embedding-2
+  dimension: 768
+
+# =============================================================================
+# Specialized Agent Models
+# =============================================================================
+agents:
+  contract_analysis:
+    model: gemini-2.5-flash
+    temperature: 0.1
+    max_tokens: 4096
+
+  legal_research:
+    model: gemini-2.5-flash
+    temperature: 0.2
+    top_k: 10
+
+  contract_drafting:
+    model: gemini-2.5-flash
+    temperature: 0.2
+    max_tokens: 8192
+
+  risk_compliance:
+    model: gemini-2.5-flash-lite
+    temperature: 0.1
+
+  lifecycle:
+    model: gemini-2.5-flash-lite
+    temperature: 0.2

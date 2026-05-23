@@ -1,0 +1,56 @@
+# =============================================================================
+# Legal Contract Automation Suite - Docker Compose
+# =============================================================================
+
+version: "3.8"
+
+services:
+  legal-automation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: legal-contract-automation:latest
+    container_name: legal-automation-suite
+    ports:
+      - "8501:8501"   # Streamlit UI
+      - "8000:8000"   # FastAPI
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - LLM_PROVIDER=${LLM_PROVIDER:-google}
+      - LLM_MODEL=${LLM_MODEL:-gemini-2.5-flash}
+      - CACHE_TTL_SECONDS=${CACHE_TTL_SECONDS:-300}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DEBUG=${DEBUG:-false}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - legal-network
+
+  # Optional: Monitoring (uncomment for production)
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   volumes:
+  #     - ./deployment/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+  #     - prometheus_data:/prometheus
+  #   ports:
+  #     - "9090:9090"
+  #   networks:
+  #     - legal-network
+
+networks:
+  legal-network:
+    driver: bridge
+
+volumes:
+  prometheus_data:
