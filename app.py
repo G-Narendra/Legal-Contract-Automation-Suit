@@ -607,7 +607,7 @@ with tab2:
         st.markdown("**Contract Terms**")
         col_d3, col_d4 = st.columns(2)
         with col_d3:
-            effective_date = st.date_input("Effective Date", value=datetime.now())
+            effective_date = st.date_input("Effective Date", value=datetime.now(), key="draft_effective_date")
         with col_d4:
             duration = st.text_input("Duration", placeholder="e.g., 1 year, 2 years")
 
@@ -874,9 +874,9 @@ with tab5:
 
         col_l3, col_l4 = st.columns(2)
         with col_l3:
-            reg_effective = st.date_input("Effective Date", value=datetime.now())
+            reg_effective = st.date_input("Effective Date", value=datetime.now(), key="reg_effective_date")
         with col_l4:
-            reg_expiry = st.date_input("Expiry Date")
+            reg_expiry = st.date_input("Expiry Date", key="reg_expiry_date")
 
         reg_value = st.text_input("Contract Value", placeholder="e.g., AED 500,000")
 
