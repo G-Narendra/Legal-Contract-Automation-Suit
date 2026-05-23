@@ -429,7 +429,7 @@ else:
     # Initialize services
     if 'llm' not in st.session_state:
         st.session_state.llm = GeminiClient(api_key)
-        st.session_state.cache = TTLCache(ttl_seconds=CONFIG["cache_ttl"])
+        st.session_state.cache = TTLCache(ttl=CONFIG["cache_ttl"])
         st.session_state.metrics = MetricsCollector()
         st.session_state.audit = AuditLogger()
 
