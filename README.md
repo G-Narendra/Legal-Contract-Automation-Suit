@@ -169,19 +169,19 @@ src/
         cache.py                    # TTL caching utility
         logger.py                   # Structured logging
         monitoring.py               # Metrics collection
-api/
-    main.py                         # FastAPI REST endpoints
-    middleware/
-        auth.py                     # API authentication
-        logging.py                  # Request logging
-        rate_limit.py               # Rate limiting
-    routes/
-        chat.py                     # Chat completion endpoint
-        documents.py                # Document processing endpoints
-        health.py                   # Health check endpoint
-    schemas/
-        request.py                  # Request validation schemas
-        response.py                 # Response serialization
+    api/
+        main.py                     # FastAPI REST endpoints
+        middleware/
+            auth.py                 # API authentication
+            logging.py              # Request logging
+            rate_limit.py           # Rate limiting
+        routes/
+            chat.py                 # Chat completion endpoint
+            documents.py            # Document processing endpoints
+            health.py               # Health check endpoint
+        schemas/
+            request.py              # Request validation schemas
+            response.py             # Response serialization
 scripts/
     build_vector_db.py              # Vector store population
     ingest_documents.py             # Document ingestion pipeline
